@@ -1,13 +1,16 @@
 const input = document.querySelectorAll("input");
 const resultBtn = document.querySelector(".resultBtn");
 const resetBtn = document.querySelector(".resetBtn");
+const gameResult = document.querySelector(".gameResult");
 const firstTable = document.querySelectorAll(".first");
-
 let count = 0;
 
-const reset = () => {
+const handleReset = () => {
   count = 0;
-  text.value = "";
+  gameResult.innerText = "";
+  firstTable.forEach((text) => {
+    text.innerText = "";
+  });
 };
 
 const tableValue = () => {
@@ -18,9 +21,9 @@ const tableValue = () => {
     });
     count += 1;
   } else {
-    reset();
+    gameResult.innerText = "정답은 ----입니다.";
   }
 };
 
 resultBtn.addEventListener("click", tableValue);
-resetBtn.addEventListener("click", reset);
+resetBtn.addEventListener("click", handleReset);
