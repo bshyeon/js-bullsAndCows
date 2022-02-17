@@ -9,6 +9,7 @@ let count = 0;
 const handleReset = () => {
   count = 0;
   gameResult.innerText = "";
+  errorText.innerText = "";
   firstTable.forEach((text) => {
     text.innerText = "";
   });
@@ -19,16 +20,21 @@ const tableValue = () => {
     input.forEach((text) => {
       if (text.value == "") {
         errorText.innerText = "빈 칸 없이 숫자를 입력해주세요.";
-        return;
+        firstTable[count].innerText = "";
+        errorCheck = true;
       } else {
+        errorText.innerText = "";
         firstTable[count].innerText += text.value;
         text.value = "";
+        errorCheck = false;
       }
     });
   } else {
     gameResult.innerText = "정답은 ----입니다.";
   }
-  count += 1;
+  if (errorCheck == false) {
+    count += 1;
+  }
 };
 
 buttons.forEach((button) => {
