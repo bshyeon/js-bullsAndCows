@@ -11,8 +11,16 @@ const inputValue = () => {
   input.forEach((text) => {
     valueArray.push(text.value);
   });
-  firstTable[count].innerText = valueArray;
-  count += 1;
+
+  if (valueArray.indexOf("") !== -1) {
+    errorText.innerText = "숫자를 입력해주세요";
+    // 문자 입력 에러 추가
+    // 10 이상 숫자 입력 에러 추가
+  } else {
+    errorText.innerText = "";
+    firstTable[count].innerText = valueArray;
+    count += 1;
+  }
 };
 
 buttons.forEach((button) => {
@@ -22,6 +30,7 @@ buttons.forEach((button) => {
         inputValue();
         break;
       case "reset":
+        // reset 함수 추가
         break;
     }
   });
