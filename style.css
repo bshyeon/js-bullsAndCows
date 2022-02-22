@@ -8,7 +8,6 @@ body {
 .input-form {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
 }
 
 .input-form input {
