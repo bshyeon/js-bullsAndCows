@@ -5,6 +5,15 @@ const errorText = document.querySelector(".errorText");
 const firstTable = document.querySelectorAll(".first");
 
 let count = 0;
+let randomArray = [];
+
+const randomValue = () => {
+  const randomNumber = Math.floor(Math.random() * 10);
+  if (randomArray.length < 4 && randomArray.indexOf(randomNumber) < 0) {
+    randomArray.push(randomNumber);
+  }
+};
+
 const inputValue = () => {
   const valueArray = [];
   input.forEach((text) => {
@@ -32,6 +41,7 @@ const inputValue = () => {
 };
 
 const reset = () => {
+  randomArray = [];
   errorText.innerText = "";
   firstTable.forEach((item) => {
     item.innerText = "";
@@ -42,11 +52,13 @@ const reset = () => {
   count = 0;
 };
 
+randomValue();
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.dataset.value) {
       case "result":
         inputValue();
+        // 결과 표시
         break;
       case "reset":
         reset();
