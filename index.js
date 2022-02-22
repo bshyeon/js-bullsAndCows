@@ -10,6 +10,7 @@ let randomArray = new Array();
 let valueArray = new Array();
 
 const randomValue = () => {
+  randomArray = [];
   while (randomArray.length < 4) {
     const randomNumber = Math.floor(Math.random() * 10);
     if (randomArray.indexOf(randomNumber) < 0) {
@@ -43,11 +44,13 @@ const inputValue = () => {
     ballAndStrike();
     count += 1;
   }
+  result();
 };
 
 const reset = () => {
-  randomArray = [];
+  randomValue();
   errorText.innerText = "";
+  gameResult.innerText = "";
   firstTable.forEach((item) => {
     item.innerText = "";
   });
@@ -60,11 +63,10 @@ const reset = () => {
   count = 0;
 };
 
+let strike;
 const ballAndStrike = () => {
-  console.log(valueArray);
-  console.log(randomArray);
   let ball = 0;
-  let strike = 0;
+  strike = 0;
   for (let i = 0; i < valueArray.length; i++) {
     if (valueArray[i] === randomArray[i]) {
       strike += 1;
@@ -76,6 +78,14 @@ const ballAndStrike = () => {
     }
   }
   secondTable[count].innerText = `${strike}S ${ball}B`;
+};
+
+const result = () => {
+  if (strike === 4) {
+    gameResult.innerText = "정답입니다! 축하드립니다.";
+  } else if (count > 8) {
+    gameResult.innerText = `정답은 ${randomArray} 입니다. 리셋 버튼을 눌러주세요.`;
+  }
 };
 
 randomValue();
