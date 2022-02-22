@@ -9,13 +9,19 @@ let count = 0;
 const inputValue = () => {
   const valueArray = [];
   input.forEach((text) => {
-    valueArray.push(text.value);
+    valueArray.push(parseInt(text.value));
   });
 
-  if (valueArray.indexOf("") !== -1) {
-    errorText.innerText = "숫자를 입력해주세요";
-    // 문자 입력 에러 추가
-    // 10 이상 숫자 입력 에러 추가
+  const blankCheck = valueArray.indexOf("") !== -1;
+  const nanCheck = valueArray.includes(NaN) === true;
+  const valueRangeCheck = valueArray.find((item) => {
+    return item >= 10;
+  });
+
+  if (blankCheck || nanCheck) {
+    errorText.innerText = "숫자를 입력해주세요.";
+  } else if (valueRangeCheck) {
+    errorText.innerText = "10미만의 숫자를 입력해주세요.";
   } else {
     errorText.innerText = "";
     firstTable[count].innerText = valueArray;
