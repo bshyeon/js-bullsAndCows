@@ -83,6 +83,7 @@ const ballAndStrike = () => {
 const result = () => {
   if (strike === 4) {
     gameResult.innerText = "정답입니다! 축하드립니다.";
+    count = 100;
   } else if (count > 8) {
     gameResult.innerText = `정답은 ${randomArray} 입니다. 리셋 버튼을 눌러주세요.`;
   }
@@ -94,7 +95,6 @@ buttons.forEach((button) => {
     switch (button.dataset.value) {
       case "result":
         inputValue();
-        // 결과 표시
         break;
       case "reset":
         reset();
