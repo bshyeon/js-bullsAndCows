@@ -17,11 +17,14 @@ const inputValue = () => {
   const valueRangeCheck = valueArray.find((item) => {
     return item >= 10;
   });
+  const set = new Set(valueArray);
 
   if (blankCheck || nanCheck) {
     errorText.innerText = "숫자를 입력해주세요.";
   } else if (valueRangeCheck) {
     errorText.innerText = "10미만의 숫자를 입력해주세요.";
+  } else if (set.size < 4) {
+    errorText.innerText = "중복된 숫자가 있습니다.";
   } else {
     errorText.innerText = "";
     firstTable[count].innerText = valueArray;
